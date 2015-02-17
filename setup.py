@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 from sys import platform
-from sslyze import PROJECT_VERSION, PROJECT_URL, PROJECT_EMAIL, PROJECT_DESC
-from distutils.core import setup
+import setuptools
 
+PROJECT_VERSION = '0.11.0'
+PROJECT_URL = "https://github.com/nabla-c0d3/sslyze"
+PROJECT_EMAIL = 'nabla.c0d3@gmail.com'
+PROJECT_DESC = 'Fast and full-featured SSL scanner'
 
 NASSL_BINARY = '_nassl.so'
 if platform == 'win32':
@@ -17,10 +20,10 @@ SSLYZE_SETUP = {
     'author_email' : PROJECT_EMAIL,
     'url' : PROJECT_URL,
     'scripts' : ['sslyze.py'],
-    'packages' : ['plugins', 'utils', 'nassl'],
-    'package_data' : {'plugins' : ['data/trust_stores/*.pem','data/trust_stores/mozilla_ev_oids.py'],
-                     'nassl' : [NASSL_BINARY]},
+    'py_modules' : ['sslyze'],
+    'packages' : ['plugins', 'utils'],
+    'package_data' : {'plugins' : ['data/trust_stores/*.pem','data/trust_stores/mozilla_ev_oids.py'],},
     'license' : open('LICENSE.txt').read()
 }
 
-setup(**SSLYZE_SETUP)
+setuptools.setup(**SSLYZE_SETUP)
